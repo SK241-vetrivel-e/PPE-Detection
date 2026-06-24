@@ -67,5 +67,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.camera:camera-video:1.4.2")
+    implementation("androidx.navigation:navigation-compose:2.8.0")
+//    implementation("org.tensorflow:tensorflow-lite:2.17.0")
+//    implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
+//    implementation("org.tensorflow:tensorflow-lite-metadata:0.4.4")
+//
 
 }
