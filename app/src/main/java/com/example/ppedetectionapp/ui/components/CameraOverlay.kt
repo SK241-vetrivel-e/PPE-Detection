@@ -12,7 +12,15 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 @Composable
 fun CameraOverlay(
 
-    showPersonBox: Boolean = false
+    showPersonBox: Boolean,
+
+    left: Float = 0f,
+
+    top: Float = 0f,
+
+    width: Float = 0f,
+
+    height: Float = 0f
 
 ) {
 
@@ -26,19 +34,11 @@ fun CameraOverlay(
 
                 color = Color.Green,
 
-                topLeft = Offset(
-                    size.width * 0.25f,
-                    size.height * 0.20f
-                ),
+                topLeft = Offset(left, top),
 
-                size = Size(
-                    size.width * 0.50f,
-                    size.height * 0.60f
-                ),
+                size = Size(width, height),
 
-                style = Stroke(
-                    width = 6f
-                )
+                style = Stroke(width = 6f)
 
             )
 

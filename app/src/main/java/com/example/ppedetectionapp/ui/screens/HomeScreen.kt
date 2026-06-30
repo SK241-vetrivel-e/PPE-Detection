@@ -13,7 +13,9 @@ import com.example.ppedetectionapp.ui.components.PPEStatusRow
 import com.example.ppedetectionapp.ui.components.TopBar
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onSettingsClick: () -> Unit = {}
+) {
 
     // Later YOLO will update this
     val personDetected = false
@@ -26,7 +28,7 @@ fun HomeScreen() {
 
                 onMenuClick = {},
 
-                onSettingsClick = {}
+                onSettingsClick = onSettingsClick
 
             )
 
@@ -49,7 +51,17 @@ fun HomeScreen() {
 
             // Person Bounding Box
             CameraOverlay(
-                showPersonBox = personDetected
+
+                showPersonBox = personDetected,
+
+                left = 220f,
+
+                top = 180f,
+
+                width = 250f,
+
+                height = 420f
+
             )
 
             // Waiting Message

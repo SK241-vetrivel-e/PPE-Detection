@@ -4,7 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.camera.view.PreviewView
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.example.ppedetectionapp.camera.CameraManager
 import com.example.ppedetectionapp.camera.CameraPreview
+import com.example.ppedetectionapp.ui.components.OverlayView
 
 @Composable
 fun CameraScreen(
@@ -41,25 +42,43 @@ fun CameraScreen(
             hasCameraPermission = granted
         }
 
+    // Create OverlayView only once
+    val overlayView = remember {
+        OverlayView(context)
+    }
+
     if (hasCameraPermission) {
 
-        AndroidView(
-            modifier = modifier.fillMaxSize(),
-            factory = {
+        Box(
+            modifier = modifier.fillMaxSize()
+        ) {
 
-                val previewView =
-                    CameraPreview.create(context)
+            AndroidView(
+                modifier = Modifier.fillMaxSize(),
+                factory = {
 
-                CameraManager.startCamera(
-                    context,
-                    lifecycleOwner,
+                    val previewView =
+                        CameraPreview.create(context)
+
+                    CameraManager.startCamera(
+                        context,
+                        lifecycleOwner,
+                        previewView,
+                        overlayView
+                    )
+
                     previewView
-                )
+                }
+            )
 
-                previewView
+            AndroidView(
+                modifier = Modifier.fillMaxSize(),
+                factory = {
+                    overlayView
+                }
+            )
 
-            }
-        )
+        }
 
     } else {
 
