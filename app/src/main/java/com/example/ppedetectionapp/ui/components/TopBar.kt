@@ -63,7 +63,7 @@ fun TopBar(
                     )
 
                     Text(
-                        text = "Construction Safety Monitoring",
+                        text = "Workplace Safety Monitoring",
                         style = MaterialTheme.typography.bodySmall,
                         color = Color.Gray
                     )
