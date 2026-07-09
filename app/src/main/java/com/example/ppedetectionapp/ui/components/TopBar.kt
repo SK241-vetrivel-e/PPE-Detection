@@ -3,107 +3,80 @@ package com.example.ppedetectionapp.ui.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-
     onMenuClick: () -> Unit = {},
     onSettingsClick: () -> Unit = {}
-
 ) {
-
     Column {
-
         CenterAlignedTopAppBar(
-
             navigationIcon = {
-
-                IconButton(
-                    onClick = onMenuClick
-                ) {
-
+                IconButton(onClick = onMenuClick) {
                     Icon(
                         imageVector = Icons.Default.Menu,
-                        contentDescription = "Menu"
+                        contentDescription = "Menu",
+                        tint = MaterialTheme.colorScheme.primary
                     )
-
                 }
-
             },
-
             title = {
-
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
                         text = "PPE Detection",
                         style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface
                     )
-
                     Text(
-                        text = "Construction Safety Monitoring",
+                        text = "Workplace Safety Monitoring",
                         style = MaterialTheme.typography.bodySmall,
-                        color = Color.Gray
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
-
                 }
-
             },
-
             actions = {
-
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-
-                    Text(
-                        text = "LIVE",
-                        color = Color(0xFF2E7D32),
-                        fontWeight = FontWeight.Bold
-                    )
-
-                    IconButton(
-                        onClick = onSettingsClick
+                    Surface(
+                        color = MaterialTheme.colorScheme.primaryContainer,
+                        shape = MaterialTheme.shapes.small
                     ) {
-
-                        Icon(
-                            imageVector = Icons.Default.Settings,
-                            contentDescription = "Settings"
+                        Text(
+                            text = "LIVE",
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            fontWeight = FontWeight.Bold
                         )
-
                     }
 
+                    IconButton(onClick = onSettingsClick) {
+                        Icon(
+                            imageVector = Icons.Default.Settings,
+                            contentDescription = "Settings",
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
                 }
-
-            }
-
+            },
+            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                containerColor = MaterialTheme.colorScheme.surface
+            )
         )
-
-        HorizontalDivider()
-
+        HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
     }
-
 }

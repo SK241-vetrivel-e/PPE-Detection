@@ -1,7 +1,7 @@
 package com.example.ppedetectionapp.detector
 
-data class DetectionResult(
+data class DetectorResult(
 
-    val detections: List<BoundingBox>
+    val output: Array<Array<FloatArray>>
 
 )
